@@ -1,0 +1,44 @@
+
+.box {
+    padding: 10px;
+    margin:2px;
+    width:50%;
+    vertical-align: middle;
+
+}
+
+a:link {
+  color: coral;
+}
+
+/* text alignment adjusments */
+h1,h3,h6,p,footer{
+    text-align: center;
+}
+
+footer{
+    font-size: 10px;
+    line-height: 1;
+}
+
+/* text spacing adjusments */
+h1 {
+    line-height: 0px;
+}
+
+/* link prevously visited colour */
+a:visited {
+    color: red;
+}
+
+/* link hover reaction */
+a:hover {
+    color: hotpink;
+}
+
+/* Controls the size of the Google Maps embed */
+iframe {
+    height: 200px;
+    width: 100%;
+  }
+

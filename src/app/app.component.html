@@ -1,0 +1,71 @@
+<section>
+<mat-sidenav-container hasBackdrop="true">
+
+	<mat-sidenav #snav mode="'over'" [fixedInViewport]="true">
+		<!--MENU ITEMS ==================================-->
+		<mat-nav-list>
+			<mat-list-item routerLink="/dashboard" (click)="close()">
+				<mat-icon matListIcon>dashboard</mat-icon>
+				Dashboard 
+			</mat-list-item>
+			<mat-list-item routerLink="/addexpense" (click)="close()">
+				<mat-icon matListIcon>attach_money</mat-icon>
+				Add Expense
+			</mat-list-item>
+			<mat-list-item routerLink="/viewexpenses" (click)="close()">
+				<mat-icon matListIcon>visibility</mat-icon>
+				View Expenses
+			</mat-list-item>
+			<mat-list-item routerLink="/searchexpenses" (click)="close()">
+				<mat-icon matListIcon>search</mat-icon>
+				Search Expenses
+			</mat-list-item>
+			<mat-list-item routerLink="/reports" (click)="close()">
+				<mat-icon matListIcon>list_alt</mat-icon>
+				Expense Report
+			</mat-list-item>
+		</mat-nav-list>
+
+	</mat-sidenav>
+
+
+	<mat-sidenav-content>
+		<!-- ROUTER -->
+		<router-outlet>
+      <!----------CONTENT----------->
+    </router-outlet>
+		<!-- end router -->
+	</mat-sidenav-content>
+
+</mat-sidenav-container>
+
+
+	<!----------HEADER/TOP MENU BAR----------->
+		<mat-toolbar color="accent" class="topBar">
+			<div fxHide.gt-xs>
+				<button mat-icon-button (click)="snav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+			</div>
+			<div fxFlex> </div>
+			<div  fxFlex>
+				SimpleShare       <!----------SITE NAME----------->
+
+			</div>
+			<div fxFlex > </div>
+			<div fxHide.xs >
+			</div>
+		</mat-toolbar>
+		<!-- end top nav bar-->
+
+
+
+	<!---------FOOTER------------->
+		<mat-toolbar color="primary" class="footer">
+			<div class="footerMenu">
+			© Joel Tonuri 2023
+			</div>
+		</mat-toolbar>
+	<!---------END OF FOOTER------------->
+
+    <section>

@@ -1,0 +1,49 @@
+<!--Lists all CURRENT expenses saved in the database-->
+<h1><b>View Expenses</b> </h1>
+<table mat-table [dataSource]="dataSource">
+
+<!-- Merchant Table Column -->
+<ng-container matColumnDef="Merchant">
+  <th mat-header-cell *matHeaderCellDef> Merchant </th>
+  <td mat-cell *matCellDef="let element"> {{element.merchant}} </td>
+</ng-container>
+
+<!-- Currency Amount Table Column  -->
+<ng-container matColumnDef="Amount">
+<th mat-header-cell *matHeaderCellDef> $ </th>
+<td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+</ng-container>
+
+<!-- Date of Purchase Table Column -->
+<ng-container matColumnDef="Date">
+  <th mat-header-cell *matHeaderCellDef> Date </th>
+  <td mat-cell *matCellDef="let element"> {{element.dop | date: 'dd/MM/yyyy'}} </td>
+</ng-container>
+
+<!-- Related Flatmates Table Column-->
+<ng-container matColumnDef="Paid By">
+  <th mat-header-cell *matHeaderCellDef> Paid By </th>
+  <td mat-cell *matCellDef="let element"> {{element.payer}} </td>
+</ng-container>
+
+<!-- Actions Table Column-->
+<ng-container matColumnDef="Actions">
+  <th mat-header-cell *matHeaderCellDef> Actions </th>
+  <td mat-cell *matCellDef="let element; let i=index">
+
+  <button mat-icon-button color="accent" [routerLink]="['/editexpense', i]">       
+    <mat-icon>open_in_new</mat-icon>   <!-- Icon for expanding expense view-->
+  </button>
+
+
+
+  <button mat-icon-button color="warn"  (click) = openDialog(i) >
+    <mat-icon>delete_forever</mat-icon> <!-- Icon for deletion function (see deleteexpense)-->
+  </button>
+
+  </td>
+</ng-container>
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

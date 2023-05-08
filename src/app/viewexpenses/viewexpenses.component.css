@@ -1,0 +1,28 @@
+ 
+
+ .mat-divider{
+    margin: 20px 0px 20px 0px ;
+ }
+
+ .mat-button{
+   margin:5px;
+ }
+
+ .mat-list-item{
+   width:100%;
+ }
+
+
+table { /* table sizing */
+
+  width: 100%;
+}
+
+td, th { /* more table sizing */
+  width: 25%;
+}
+
+button { /* modifies action button height, reducing the space they occupy in the table */
+  height: 0px;
+  line-height: 0px;
+}

@@ -1,0 +1,16 @@
+
+.col {
+    padding: 10px;
+    margin:2px;
+}
+.edit-submitted-message{
+  text-align: center;
+  color:red;
+}
+
+#one { /* left button positioning */
+  position: fixed; bottom: 50px;
+}
+#two { /* right button positioning */
+  margin-left: 300px;
+}
