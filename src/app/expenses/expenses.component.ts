@@ -1,20 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpensesService } from '../services/expenses.service';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { MatTableDataSource } from '@angular/material';
+import { FormControl } from '@angular/forms';
 import { DeleteExpenseComponent } from '../deleteexpense/deleteexpense.component';
 
 @Component({
-  selector: 'app-viewexpenses',
-  templateUrl: './viewexpenses.component.html',
-  styleUrls: ['./viewexpenses.component.css']
+  selector: 'app-expenses',
+  templateUrl: './expenses.component.html',
+  styleUrls: ['./expenses.component.css']
 })
 
-export class ViewExpensesComponent implements OnInit {
+export class ExpensesComponent implements OnInit {
  displayedColumns: string[] = ['Merchant', 'Amount', 'Date', 'Paid By', 'Actions']; // column ids
- dataSource = []; 
+ dataSource = new MatTableDataSource();
+ merchantFilter = new FormControl('');
+ filterValues = {
+  merchant: '',
+};
 
 // Creates instances of ExpensesService and MatDialog
   constructor(private bs: ExpensesService, public dialog: MatDialog) {
+    
   }
   
   expense: any;   // type of expense data

@@ -51,8 +51,7 @@ import {ExpensesService} from './services/expenses.service';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component'; // homepage
 import {AddExpenseComponent} from './addexpense/addexpense.component'; // add expense page
-import {ViewExpensesComponent} from './viewexpenses/viewexpenses.component'; // view expense page
-import {SearchExpensesComponent} from './searchexpenses/searchexpenses.component'; // search expenses page
+import {ExpensesComponent} from './expenses/expenses.component'; // view expense page
 import {EditExpenseComponent} from './editexpense/editexpense.component'; // edit expense page
 import {DeleteExpenseComponent } from './deleteexpense/deleteexpense.component'; // delete expense confirmation popup
 import {ReportsComponent} from './reports/reports.component'; // reports
@@ -63,8 +62,7 @@ const appRoutes: Routes = [
     {path: 'home', component: HomeComponent}, // homepage
     {path: 'addexpense', component: AddExpenseComponent}, // add expense page
     {path: 'editexpense/:id', component: EditExpenseComponent}, // edit expense page, grabs the id of specific expense to edit
-    {path: 'viewexpenses', component: ViewExpensesComponent}, // view expense page
-    {path: 'searchexpenses', component: SearchExpensesComponent}, // view expense page
+    {path: 'expenses', component: ExpensesComponent}, // view expense page
     {path: 'reports', component: ReportsComponent}, // edit expense page, grabs the id of specific expense to edit
     {path: '**', component: HomeComponent} // wildcard to homepage
 
@@ -118,7 +116,7 @@ const appRoutes: Routes = [
             appRoutes,
         )
     ],  // end imports
-    declarations: [AppComponent, HomeComponent, AddExpenseComponent, ViewExpensesComponent, EditExpenseComponent, DeleteExpenseComponent, ReportsComponent, SearchExpensesComponent],
+    declarations: [AppComponent, HomeComponent, AddExpenseComponent, ExpensesComponent, EditExpenseComponent, DeleteExpenseComponent, ReportsComponent],
     bootstrap: [AppComponent],
     providers: [ExpensesService, [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }]], // changes datepicker locale to en_GB
     entryComponents: [DeleteExpenseComponent]
