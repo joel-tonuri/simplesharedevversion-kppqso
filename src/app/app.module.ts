@@ -4,7 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MAT_DATE_LOCALE} from '@angular/material'; // allows me to change datepicker locale to en_GB
-import { NgxCurrencyInputModule } from 'ngx-currency-input'; // currency masker for form inputs
+import {NgxCurrencyInputModule} from 'ngx-currency-input'; // currency masker for form inputs
 
 import {
     MatAutocompleteModule,
@@ -117,7 +117,7 @@ const appRoutes: Routes = [
         )
     ],  // end imports
     declarations: [AppComponent, HomeComponent, AddExpenseComponent, ExpensesComponent, EditExpenseComponent, DeleteExpenseComponent, ReportsComponent],
-    bootstrap: [AppComponen],
+    bootstrap: [AppComponent],
     providers: [ExpensesService, [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }]], // changes datepicker locale to en_GB
     entryComponents: [DeleteExpenseComponent]
 })
