@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material";
-import { ExpensesService } from '../services/expenses.service'; // imports ExpensesService
+import { ExpensesService } from '../services/expenses.service'; 
 
 @Component({
   selector: 'app-deleteexpense',
@@ -12,32 +12,31 @@ export class DeleteExpenseComponent implements OnInit {
 
   constructor(private bs: ExpensesService,
     public dialogRef: MatDialogRef<DeleteExpenseComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { } // injects data
+    @Inject(MAT_DIALOG_DATA) public data: any) { } 
 
   expense: []; // holds the expense data
   id = this.data; // assign to variable "id"
-  displayName:string; // variable to display name
+  displayName: string;
 
 
   ngOnInit() {
     // calls ExpensesService and assigns it to the expense variable
     this.expense = this.bs.getExpense();
-    // sets the variable "displayName" to the expenses array at ID
+    
   }
 
-  refresh(): void { // function that is called to completely refresh the webpage after an expense is deleted
+  refresh(): void { // refresh after deletion
     window.location.reload();
 }
 
-  delete(data) { // deletes an expense
+  delete(data) {
     console.log("in delete :" + data)
     this.bs.deleteExpense(this.data);
   }
 
-  close() { // dismisses the prompt 
+  close() {
     this.dialogRef.close();
     this.dialogRef.afterClosed().subscribe(value => {
     });
   }
-  
 }

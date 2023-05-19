@@ -43,8 +43,6 @@ export class ExpensesComponent implements OnInit {
     this.searchKey = '';
     this.applyFilter();
   }
-// delete expense dialog
-// this is actioned when a user clicks on the delete icon
   openDialog(id: number): void {
     const dialogConfig: MatDialogConfig = {
       width: '500px', // specifies pop up width
@@ -52,7 +50,6 @@ export class ExpensesComponent implements OnInit {
       data: id, // 'id' is passed to the pop up as 'data'
     };
 
-     // presents dialog
     this.dialog.open(DeleteExpenseComponent, dialogConfig)
       .afterClosed()
       .subscribe(value => {

@@ -55,7 +55,7 @@ export class AddExpenseComponent implements OnInit {
     this.valid = this.bs.checkAdd(this.addexpenseForm.value);
     if (this.valid == "pass") {
       this.bs.addExpense(this.addexpenseForm.value);
-      alert("The expense has been successfully added" ) ;
+      alert("The expense has been added" ) ;
       this.addexpenseForm.reset();
     }
 
@@ -91,8 +91,8 @@ export class AddExpenseComponent implements OnInit {
 
   addCategory(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-    const separatorKeys = [',', ' ']; // Add any additional separator keys if needed
-  
+    const separatorKeys = [',', ' ']; 
+
     // Check if a category has already been selected
     if (this.allCategories.length > 0) {
       // Clear the input value
@@ -120,10 +120,7 @@ export class AddExpenseComponent implements OnInit {
     event.input.value = '';
   }
   
-  
 
-
-  
   removeCategory(category: string): void {
     const index = this.allCategories.indexOf(category);
     if (index !== -1) {

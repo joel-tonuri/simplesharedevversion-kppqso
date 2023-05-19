@@ -1,10 +1,7 @@
-<!--Walks a user through deletion of an existing expense, warning them that it cannot be undone-->
-
 <section class="container"> 
-  <h1>Warning! <mat-icon matListIcon>warning</mat-icon></h1>
-<p>Are you sure you want to delete this expense from <b>{{this.expense[0].merchant}}</b>? It was incurred by <b>{{expense[0].payer}}</b> on <b>{{expense[0].dop}}</b></p>
-<small>Careful - this action cannot be undone.</small>
-
+  <h1>Warning<mat-icon matListIcon>warning</mat-icon><mat-icon matListIcon>warning</mat-icon><mat-icon matListIcon>warning</mat-icon></h1>
+<p>Are you sure you want to delete this expense from <b>{{this.expense[data].merchant}}</b>? It was paid by <b>{{expense[data].payer}}</b> on <b>{{expense[data].dop | date: 'dd/MM/yyyy'}}</b></p>
+<small>Careful! This cannot be undone</small>
     <mat-dialog-actions>
       <button mat-raised-button color="primary" (click)="close()">Cancel</button>         <!--Dismiss Button--> 
       <button mat-raised-button color="warn"  (click)="delete(id);refresh()" >Delete</button >  <!-- Confirm Delete Button--> 

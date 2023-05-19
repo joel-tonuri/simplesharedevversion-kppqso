@@ -37,13 +37,13 @@ export class EditExpenseComponent implements OnInit, OnDestroy {
     });
 
 
-    this.initialiseForm(this.expenses, this.id); // creates a form group
+    this.initialiseForm(this.expenses, this.id);
   }
 
-  message: string = ""; // creates message which is displayed upon form submission
+  message: string = "";
   editShowBut: boolean = true;
   bntStyle: string = '';
-  maxDate = new Date(2022, 4, 26); // defines a future date, after which the datepicker will not accept
+  maxDate = new Date(2022, 4, 26);
 
   submitEdit() {
     // pull the edited values from the form
@@ -52,7 +52,7 @@ export class EditExpenseComponent implements OnInit, OnDestroy {
     // uses editExpense function from ExpensesServices
     this.bs.editExpense(form, this.id);
     this.expenses = this.bs.getExpense();
-    this.message = "The expense has been successfully updated.";
+    this.message = "The details of this expense have been updated";
     this.bntStyle = 'mat-fab';
   }
 
