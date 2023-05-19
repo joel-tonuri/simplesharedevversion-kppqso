@@ -3,26 +3,19 @@
 <!--Lists all CURRENT expenses saved in the database-->
 <h1><b>View Expenses</b> </h1>
 
+<input matInput class="searchbox" placeholder="Search" [(ngModel)]="searchKey" (ngModelChange)="applyFilter()">
 
-<table  mat-table [dataSource]="dataSource">
+<table  mat-table [dataSource]="dataSource" matSort>
 
 <!-- Merchant Table Column -->
 <ng-container matColumnDef="Merchant">
-  <th mat-header-cell *matHeaderCellDef> Merchant
-  <mat-form-field class="filter" floatLabel="never">
-    <mat-label>Search</mat-label>
-    <input matInput [formControl]="merchantFilter">
-  </mat-form-field></th>
+  <th mat-header-cell *matHeaderCellDef> Merchant</th>
   <td mat-cell *matCellDef="let element"> {{element.merchant}} </td>
 </ng-container>
 
 <!-- Currency Amount Table Column  -->
 <ng-container matColumnDef="Amount">
 <th mat-header-cell *matHeaderCellDef> $
-  <mat-form-field class="filter" floatLabel="never">
-    <mat-label>Search</mat-label>
-    <input matInput [formControl]="amountFilter">
-  </mat-form-field>
 </th>
 <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
 </ng-container>
@@ -30,10 +23,6 @@
 <!-- Date of Purchase Table Column -->
 <ng-container matColumnDef="Date">
   <th mat-header-cell *matHeaderCellDef> Date
-    <mat-form-field class="filter" floatLabel="never">
-      <mat-label>Search</mat-label>
-      <input matInput [formControl]="dateFilter">
-    </mat-form-field>
   </th>
   <td mat-cell *matCellDef="let element"> {{element.dop | date: 'dd/MM/yyyy'}} </td>
 </ng-container>
@@ -41,10 +30,6 @@
 <!-- Related Flatmates Table Column-->
 <ng-container matColumnDef="Paid By">
   <th mat-header-cell *matHeaderCellDef> Paid By
-    <mat-form-field class="filter" floatLabel="never">
-      <mat-label>Search</mat-label>
-      <input matInput [formControl]="tenantFilter">
-    </mat-form-field>
   </th>
   <td mat-cell *matCellDef="let element"> {{element.payer}} </td>
 </ng-container>

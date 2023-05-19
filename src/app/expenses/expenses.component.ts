@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ExpensesService } from '../services/expenses.service';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { MatTableDataSource } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
 import { FormControl } from '@angular/forms';
 import { DeleteExpenseComponent } from '../deleteexpense/deleteexpense.component';
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-expenses',
@@ -13,11 +15,10 @@ import { DeleteExpenseComponent } from '../deleteexpense/deleteexpense.component
 
 export class ExpensesComponent implements OnInit {
  displayedColumns: string[] = ['Merchant', 'Amount', 'Date', 'Paid By', 'Actions']; // column ids
- dataSource = new MatTableDataSource();
- merchantFilter = new FormControl('');
- filterValues = {
-  merchant: '',
-};
+  dataSource: MatTableDataSource<ExpensesComponent>;
+ searchKey: string;
+ @ViewChild(MatSort) sort: MatSort;
+
 
 // Creates instances of ExpensesService and MatDialog
   constructor(private bs: ExpensesService, public dialog: MatDialog) {
@@ -26,13 +27,22 @@ export class ExpensesComponent implements OnInit {
   
   expense: any;   // type of expense data
 
-
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
   ngOnInit() {    
     this.expense = this.bs.getExpense(); // calls the ExpensesService Method 'getExpense' and relays all the data to 'expense'
-    this.dataSource = this.expense; // table data is sourced from 'expense'
-
+    this.dataSource = new MatTableDataSource<expenses>(this.expense);
   }
- 
+
+  applyFilter() {
+    this.dataSource.filter = this.searchKey.trim().toLowerCase();
+  }
+  
+  clearFilter() {
+    this.searchKey = '';
+    this.applyFilter();
+  }
 // delete expense dialog
 // this is actioned when a user clicks on the delete icon
   openDialog(id: number): void {
