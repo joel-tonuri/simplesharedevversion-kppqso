@@ -21,14 +21,15 @@ table { /* table sizing */
   width: 100%;
 }
 
-td, th { /* more table sizing */
+td, th {
   width: 25%;
 }
 
-button { /* modifies action button height, reducing the space they occupy in the table */
+button { /* reduces action button height*/
   height: 0px;
   line-height: 0px;
 }
+
 .searchbox {
   padding: 8px;
   border: 1px solid #ccc;
