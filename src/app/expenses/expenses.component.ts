@@ -52,9 +52,10 @@ dop: string|number|Date;
     console.log('Search function called');
     const startDate = this.startDate;
     const endDate = this.endDate;
+    console.log(this.startDate);
 
     this.dataSource.filterPredicate = (data: any, filter: string) => {
-      const expenseDate = new Date(data.date);
+      const expenseDate = new Date(data.dopd);
 
       if (
         (!startDate || expenseDate >= startDate) &&
@@ -64,8 +65,8 @@ dop: string|number|Date;
       }
       return false;
     };
-
     this.dataSource.filter = this.searchKey.trim().toLowerCase();
+
   }
   
   openDialog(id: number): void {
