@@ -16,8 +16,11 @@ import { ViewChild } from '@angular/core';
 export class ExpensesComponent implements OnInit {
  displayedColumns: string[] = ['Merchant', 'Amount', 'Date', 'Paid By', 'Actions']; // column ids
   dataSource: MatTableDataSource<ExpensesComponent>;
- searchKey: string;
+  searchKey: string = '';
  @ViewChild(MatSort) sort: MatSort;
+startDate: string|number|Date;
+endDate: string|number|Date;
+dop: string|number|Date;
 
 
 // Creates instances of ExpensesService and MatDialog
@@ -32,7 +35,8 @@ export class ExpensesComponent implements OnInit {
   }
   ngOnInit() {    
     this.expense = this.bs.getExpense(); // calls the ExpensesService Method 'getExpense' and relays all the data to 'expense'
-    this.dataSource = new MatTableDataSource<expenses>(this.expense);
+    this.dataSource = new MatTableDataSource<ExpensesComponent>(this.expense);
+    
   }
 
   applyFilter() {
@@ -43,6 +47,27 @@ export class ExpensesComponent implements OnInit {
     this.searchKey = '';
     this.applyFilter();
   }
+
+  search() {
+    console.log('Search function called');
+    const startDate = this.startDate;
+    const endDate = this.endDate;
+
+    this.dataSource.filterPredicate = (data: any, filter: string) => {
+      const expenseDate = new Date(data.date);
+
+      if (
+        (!startDate || expenseDate >= startDate) &&
+        (!endDate || expenseDate <= endDate)
+      ) {
+        return true;
+      }
+      return false;
+    };
+
+    this.dataSource.filter = this.searchKey.trim().toLowerCase();
+  }
+  
   openDialog(id: number): void {
     const dialogConfig: MatDialogConfig = {
       width: '500px', // specifies pop up width

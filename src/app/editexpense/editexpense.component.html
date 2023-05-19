@@ -1,51 +1,36 @@
-<!--Allows a user to modify a certain expense AFTER creation - accessed via the viewexpenses page-->
-     <h1><b> Update an Expense </b></h1>
-
-<!--Lists current expense details from local storage-->		 
-<div  fxLayout="row wrap" >
-	<div class="col">
-		<h4> <b>Current Expense Details</b> </h4>
-      <p><b>Merchant Name:</b> {{expenses[id].merchant}}<br>
-      <b>Expense Date:</b> {{expenses[id].dop | date: 'dd/MM/yyyy'}}<br>
-			<b>Flatmates owing:</b> {{ expenses[id].payer }}
-			</p>
-	</div>
-
- <p class="edit-submitted-message"> <!--message which is displayed upon form submission-->
-		{{message}} <br>
+<h1><b> Modify Expense from </b><i>{{ expenses[id].merchant }}</i></h1>
+<p>This expense was paid by <strong>{{ expenses[id].payer }}</strong>. You should notify them before making any changes.
+<p class="edit-submitted-message"> 
+	{{message}} <br>
 </p>
-	<div class="col" fxL
-	ayout="row wrap">
-		<h4> <b>New Expense Details</b></h4> <!--proposed new expense details via a form input field-->		 
+<div class="col" fxLayout="row wrap">
+<form  [formGroup]="expenseForm" (ngSubmit)="submitEdit()">
 
-	<form  [formGroup]="expenseForm" (ngSubmit)="submitEdit()">
-
-					<div> <!--payee-->		 
-             <strong>  Merchant Name: </strong>
-						<mat-form-field>
-							<input matInput formControlName="merchant">
-						</mat-form-field>
-					</div>
-					
-					<div> <!--amount-->		 
-						<strong> $</strong>
+				<div>
+					 <strong>  Merchant: </strong>
 					<mat-form-field>
-					<input matInput formControlName="amount" ngxCurrencyInput required>
+						<input matInput formControlName="merchant">
 					</mat-form-field>
 				</div>
 				
-					<div> <!--dop-->		 
-						<strong>  Date:  </strong>
-						<mat-form-field>
-						<input [max]="maxDate" fxFlex formControlName="dop" matInput [matDatepicker]="picker">
-						<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-						<mat-datepicker #picker></mat-datepicker>
-						</mat-form-field>
-					</div> 
-					<button id="two" type="submit" mat-raised-button color="accent">Update</button>
+				<div> 	 
+					<strong> Amount:</strong>
+				<mat-form-field>
+				<input matInput formControlName="amount" ngxCurrencyInput required>
+				</mat-form-field>
+			</div>
+			
+				<div>
+					<strong>  Date:  </strong>
+					<mat-form-field>
+					<input [max]="maxDate" fxFlex formControlName="dop" matInput [matDatepicker]="picker">
+					<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+					<mat-datepicker #picker></mat-datepicker>
+					</mat-form-field>
+				</div> 
 
-			</form>
-	</div>
-
-	<button id="one" mat-raised-button [routerLink]="['/expenses']" color="primary">Return</button> <!--Abort buttion-->		 
+		</form>
 </div>
+
+<button id="one" mat-raised-button [routerLink]="['/expenses']" color="primary">Return</button>	 
+<button id="two" type="submit" mat-raised-button color="accent">Update</button>
