@@ -35,31 +35,28 @@
 				</mat-select>
 			</mat-form-field>
 		
-			<mat-form-field> <!--tags (both provided and custom ones)-->
+			<mat-form-field> <!--categories-->
 			<mat-chip-list #chipList>
 				<mat-chip
-					*ngFor="let tag of tags"
-					[selectable]="selectable"
-					[removable]="removable"
-					(removed)="remove(tag)">
-					{{tag}}
-					<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+					*ngFor="let category of allCategories"
+					[removable]="true"
+					(removed)="removeCategory(category)">
+					{{category}}
+					<mat-icon matChipRemove>cancel</mat-icon>
 				</mat-chip>
 
-				<input
-					placeholder="Category"
-					#tagInput
-					formControlName="tagged"
+				<input matInput
+					placeholder="Select or enter categories"
+					[formControl]="categoryCtrl"
 					[matAutocomplete]="auto"
 					[matChipInputFor]="chipList"
-					[matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-					[matChipInputAddOnBlur]="addOnBlur"
-					(matChipInputTokenEnd)="add($event)">
+					[matChipInputSeparatorKeyCodes]="[32, 188]"
+					(matChipInputTokenEnd)="addCategory($event)">
 			</mat-chip-list>
 
 			<mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-				<mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
-					{{tag}}
+				<mat-option *ngFor="let category of predefinedCategories" [value]="category">
+					{{category}}
 				</mat-option>
 			</mat-autocomplete>
 		</mat-form-field>

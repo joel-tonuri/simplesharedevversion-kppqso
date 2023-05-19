@@ -4,8 +4,8 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes'; // used for custom tag entry
 import { ExpensesService } from '../services/expenses.service'; // imports ExpensesService
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete'; // used for pre-defined tag selection
-import {MatChipInputEvent} from '@angular/material/chips'; // expense form tags
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-addexpense',
@@ -25,15 +25,8 @@ export class AddExpenseComponent implements OnInit {
   // Creates instances of FormBuilder and ExpensesService
   constructor(
     private fb: FormBuilder,
-    private bs: ExpensesService
-  ) 
+    private bs: ExpensesService) {}
   
-  // allows for expenses to be allocated with a tag by the user
-  {     this.filteredTags = this.tagCtrl.valueChanges.pipe(
-    startWith(null),
-    map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));}
-
-
   ngOnInit(): void {
     // defines formcontrolnames
     this.addexpenseForm = this.fb.group(
@@ -43,21 +36,19 @@ export class AddExpenseComponent implements OnInit {
         amount: [null],
         dop: [null],
         payer: [null],
-        tagged: [null],
-        settled: [false]
+        categorised: [null],
+        settled: [false],
       }
     );
 
-// real time observations of data entered in the form, for debugging purposes
+// for debugging
     this.addexpenseForm.valueChanges 
       .subscribe((formData) => {
           // logged in console real-time
           console.log(formData.merchant);
       })
-
   }
 
-  
   // input validation
   submit(): void {  
     this.errorMessage = "";
@@ -86,59 +77,65 @@ export class AddExpenseComponent implements OnInit {
     }
 }
 // miscellaneous
+  customCategory: string; 
   visible = true;
   selectable = true;
   removable = true;
-  addOnBlur = true;
-  separatorKeysCodes: number[] = [ENTER, COMMA]; // these are the actions you can use when adding a custom tag
-  tagCtrl = new FormControl; // defines a new formControl section solely for the tag functionality
-  filteredTags: Observable<string[]>; // tag filtering using Observable from rxjs
-  tags: string[] = []; 
-  allTags: string[] = ['Entertainment', 'Furniture', 'Maintenance', 'Groceries', 'Utilities', 'Miscellaneous']; // hardcoded example tag types
+  separatorKeysCodes: number[] = [ENTER, COMMA]; 
+  categoryCtrl = new FormControl; 
+  filteredCategories: Observable<string[]>; // tag filtering using Observable from rxjs
+  categories: string[] ; 
+  predefinedCategories: string[] = ['Entertainment', 'Furniture', 'Maintenance', 'Groceries', 'Utilities', 'Miscellaneous']; // hardcoded examples
+  allCategories: string[] = [];
   maxDate = new Date(2024, 4, 22); 
 
-  // for the tag function
-  @ViewChild('tagInput', {static: false}) tagInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
-
-  add(event: MatChipInputEvent): void {
-    // you can only add a tag when MatAutocomplete is not already open
-    if (!this.matAutocomplete.isOpen) {
-      const input = event.input;
-      const value = event.value;
-
-      // Add tag
-      if ((value || '').trim()) {
-        this.tags.push(value.trim());
-      }
-
-      // Return input to blank
-      if (input) {
-        input.value = '';
-      }
-
-      this.tagCtrl.setValue(null);
+  addCategory(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    const separatorKeys = [',', ' ']; // Add any additional separator keys if needed
+  
+    // Check if a category has already been selected
+    if (this.allCategories.length > 0) {
+      // Clear the input value
+      event.input.value = '';
+      return; // Exit the function if a category has already been selected
     }
+  
+    // Check if the entered value is not empty and is separated by a separator key
+    if (value && separatorKeys.indexOf(event.value)) {
+      const categories = value.split(new RegExp(`[${separatorKeys.join('')}]`));
+  
+      // Add each category to the selectedCategories array
+      categories.forEach(category => {
+        const trimmedCategory = category.trim();
+        if (trimmedCategory && this.allCategories.indexOf(trimmedCategory) === -1) {
+          this.allCategories.push(trimmedCategory);
+        }
+      });
+    } else if (value && this.allCategories.indexOf(value) === -1) {
+      // Add the custom category if it is not empty and does not already exist
+      this.allCategories.push(value);
+    }
+  
+    // Clear the input value
+    event.input.value = '';
   }
+  
+  
 
-  // remove a tag
-  remove(tag: string): void {
-    const index = this.tags.indexOf(tag);
 
-    if (index >= 0) {
-      this.tags.splice(index, 1);
+  
+  removeCategory(category: string): void {
+    const index = this.allCategories.indexOf(category);
+    if (index !== -1) {
+      this.allCategories.splice(index, 1);
     }
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.tags.push(event.option.viewValue);
-    this.tagInput.nativeElement.value = '';
-    this.tagCtrl.setValue(null);
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allTags.filter(tag => tag.toLowerCase().indexOf(filterValue) === 0);
+    const category = event.option.value;
+    if (this.allCategories.indexOf(category) === -1) {
+      this.allCategories.push(category);
+    }
+    this.categoryCtrl.setValue('');
   }
 }

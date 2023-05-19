@@ -1,4 +1,7 @@
- 
+h1 {
+  margin-top: -25px;
+  text-align: center;
+}
 
  .mat-divider{
     margin: 20px 0px 20px 0px ;
@@ -26,16 +29,20 @@ button { /* modifies action button height, reducing the space they occupy in the
   height: 0px;
   line-height: 0px;
 }
-
 .searchbox {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 200px;
   font-size: 14px;
+  color: #000;
 }
 
-.searchbox {
+.searchbox::placeholder {
+  color: #999; 
+}
+
+.searchbox:focus {
   outline: none;
   border-color: blue;
 }
