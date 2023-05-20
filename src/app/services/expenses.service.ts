@@ -30,7 +30,13 @@ export class ExpensesService   {
     return expenses;
   }
 
-  
+  getRecentExpenses() {
+    let expenses = JSON.parse(localStorage.getItem('expensesDB'));
+    // Sort the expenses by date in descending order
+    const sortedExpenses = expenses.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    // Return the 10 most recent expenses
+    return sortedExpenses.slice(0, 10);
+  }
 
   // this FUNCTION accepts 'one' parameter, 'expense', which is an object
   // and pushes this parameter into the expenses array
@@ -56,30 +62,25 @@ export class ExpensesService   {
   checkAdd(addValues): void {
     // checks if inputs in the expenseForm are valid
     this.valid = "pass";
-    if (typeof addValues.merchant === 'undefined' || addValues.merchant == null || addValues.merchant == "") { // this checks that the merchant field is valid
+    if (typeof addValues.merchant === 'undefined' || addValues.merchant == null || addValues.merchant == "") { 
       this.valid = "merchantFail";
     }
 
-    if (typeof addValues.amount === 'undefined' || addValues.amount == null || addValues.amount == "") { // this checks that the amount field is valid
+    if (typeof addValues.amount === 'undefined' || addValues.amount == null || addValues.amount == "") { 
       this.valid = "amountFail";
     }
 
-    if (typeof addValues.payer === 'undefined' || addValues.payer == null || addValues.payer == "") { // this checks that the "who paid this expense" field is valid
+    if (typeof addValues.payer === 'undefined' || addValues.payer == null || addValues.payer == "") {
       this.valid = "payerFail";
     }
 
-    if (typeof addValues.dop === 'undefined' || addValues.dop == null || addValues.dop == "") { // this checks that the date field is valid
+    if (typeof addValues.dop === 'undefined' || addValues.dop == null || addValues.dop == "") {
       this.valid = "dateFail";
     }
 
-    console.log("payee is " + addValues.payee); // for debugging purposes
-    console.log("valid is inside check " + this.valid); // for debugging purposes
+    console.log("payee is " + addValues.payee); // debugging
+    console.log("valid is inside check " + this.valid);
 
     return this.valid;
-
-    
   }
-
-
-
 }

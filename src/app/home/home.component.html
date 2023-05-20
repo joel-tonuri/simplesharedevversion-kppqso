@@ -1,9 +1,7 @@
 <script type="module" src="dashboard.component.ts"></script> 
 
 
-<h1>Welcome <b>{{user}}</b></h1>
-<p><strong>Tenant</strong> at <strong>{{address}}</strong></p> 
-
+<h1>Welcome!</h1>
 
 <br>
 <br>
@@ -11,14 +9,22 @@
 <br>
 <br>
 <br>
-<br><h3><b>Overview</b></h3>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<h2>Recent Expenses</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Merchant</th>
+      <th>Amount</th>
+      <th>Date</th>
+      <th>Tenant</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let expense of recentExpenses">
+      <td>{{ expense.merchant }}</td>
+      <td>{{ expense.amount }}</td>
+      <td>{{ expense.date }}</td>
+      <td>{{ expense.payer }}</td>
+    </tr>
+  </tbody>
+</table>
