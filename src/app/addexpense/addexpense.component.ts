@@ -15,7 +15,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 export class AddExpenseComponent implements OnInit {
   payer = ''; 
-  tenantList: string[] = ['Phillip', 'Mary', 'Bill', 'Reuben', 'Kate']; // tenant names are hardcoded, for now
+  tenantList: string[] = ['Fred', 'Mary', 'Phillip', 'Ryan', 'Peter']; // tenant names are hardcoded, for now
 
   // Makes my 'expenseForm' a FormGroup
   addexpenseForm: FormGroup;

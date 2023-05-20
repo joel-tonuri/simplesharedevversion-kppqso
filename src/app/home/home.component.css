@@ -38,3 +38,18 @@ a:visited {
 a:hover {
     color: hotpink;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+  }
+  
+  table th {
+    font-weight: bold;
+  }
+  
+  table th, table td {
+    border: 1px solid black;
+    padding: 8px;
+  }

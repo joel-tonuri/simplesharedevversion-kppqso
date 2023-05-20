@@ -24,13 +24,31 @@ button { /* specifies button position */
   margin-top: 10%;
   margin-left: 65%;
 }
-h1,h5{
+h1,h2,h5{
     display: block;
     text-align: center;
     margin-right: 50;
 }
 
+p {
+  text-align: center;
+}
 #entry {
   margin-right: -40px;
   margin-left: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid black;
+  padding: 8px;
 }
