@@ -30,7 +30,7 @@ export class DeleteExpenseComponent implements OnInit {
 }
 
   delete(data) {
-    console.log("in delete :" + data)
+    console.log("to delete :" + this.data)
     this.bs.deleteExpense(this.data);
   }
 

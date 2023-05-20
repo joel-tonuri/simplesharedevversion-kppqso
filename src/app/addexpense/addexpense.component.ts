@@ -36,7 +36,7 @@ export class AddExpenseComponent implements OnInit {
         amount: [null],
         dop: [null],
         payer: [null],
-        categorised: [null],
+        category: [null],
         settled: [false],
       }
     );
@@ -45,7 +45,14 @@ export class AddExpenseComponent implements OnInit {
     this.addexpenseForm.valueChanges 
       .subscribe((formData) => {
           // logged in console real-time
-          console.log(formData.merchant);
+          console.log("Merchant:",formData.merchant);
+          console.log("Description:",formData.description);
+          console.log("$:",formData.amount);
+          console.log("DOP:",formData.dop);
+          console.log("Payer:",formData.payer);
+          console.log("Category:",formData.categorised);
+
+
       })
   }
 

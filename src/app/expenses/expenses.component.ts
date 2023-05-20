@@ -21,7 +21,8 @@ export class ExpensesComponent implements OnInit {
 startDate: string|number|Date;
 endDate: string|number|Date;
 dop: string|number|Date;
-
+startDatePicker: any;
+endDatePicker: any;
 
 // Creates instances of ExpensesService and MatDialog
   constructor(private bs: ExpensesService, public dialog: MatDialog) {
@@ -52,10 +53,10 @@ dop: string|number|Date;
     console.log('Search function called');
     const startDate = this.startDate;
     const endDate = this.endDate;
-    console.log(this.startDate);
+    console.log(this.startDate, this.endDate);
 
     this.dataSource.filterPredicate = (data: any, filter: string) => {
-      const expenseDate = new Date(data.dopd);
+      const expenseDate = new Date(data.dop);
 
       if (
         (!startDate || expenseDate >= startDate) &&
