@@ -5,7 +5,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MAT_DATE_LOCALE} from '@angular/material'; // allows me to change datepicker locale to en_GB
 import {NgxCurrencyInputModule} from 'ngx-currency-input'; // currency masker for form inputs
-
 import {
     MatAutocompleteModule,
     MatBadgeModule,

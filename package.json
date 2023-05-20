@@ -18,7 +18,7 @@
     "@ngx-pwa/local-storage": "6.1.0",
     "core-js": "2.5.7",
     "faker": "4.1.0",
-    "https:": "*",
+    "hammerjs": "^2.0.8",
     "moment": "2.29.3",
     "ngx-currency-input": "1.0.2",
     "null": "2.0.0",

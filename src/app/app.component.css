@@ -13,6 +13,7 @@
     text-align: center;
     background: #FCCA46;
     color: black;
+    font-size: 25px;
 }
 
 
@@ -51,6 +52,7 @@ height:100vh;
     justify-content: center;
     width: 200px;
     background: #03045E;
+    opacity: 0.8;
 }
 
 
@@ -72,6 +74,3 @@ height:100vh;
     color:  beige; 
     padding:4px;
 }
-
-
-
