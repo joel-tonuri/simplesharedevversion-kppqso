@@ -1,5 +1,5 @@
 <script type="module" src="addexpense.component.ts"></script>
-<h1> Add Expense </h1>
+<h1> New Expense </h1>
 <h5> Required fields are denoted with an asterisk (*)</h5>
 	<div id="error"> {{errorMessage}} </div>
 	<form [formGroup]="addexpenseForm" (ngSubmit)="submit()">
@@ -60,9 +60,7 @@
 				</mat-option>
 			</mat-autocomplete>
 		</mat-form-field>
-					
-			<!--Submit form contents-->
-			<div fxFlex class="register-but">
+								<div fxFlex class="register-but">
 				<button   mat-raised-button>Add</button>
 			</div>
 

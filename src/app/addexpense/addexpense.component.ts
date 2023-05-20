@@ -76,7 +76,7 @@ export class AddExpenseComponent implements OnInit {
     }    
 
     if (this.valid == "payerFail") {
-      this.errorMessage = "Please indicate which tenant has paid this expense"
+      this.errorMessage = "Please indicate which tenant incurred this expense"
     }
 
     if (this.valid == "dateFail") {

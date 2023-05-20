@@ -6,11 +6,11 @@
 		<mat-nav-list>
 			<mat-list-item routerLink="/dashboard" (click)="close()">
 				<mat-icon matListIcon>dashboard</mat-icon>
-				Dashboard 
+				Home 
 			</mat-list-item>
 			<mat-list-item routerLink="/addexpense" (click)="close()">
 				<mat-icon matListIcon>attach_money</mat-icon>
-				New Expense
+				Add Expense
 			</mat-list-item>
 			<mat-list-item routerLink="/expenses" (click)="close()">
 				<mat-icon matListIcon>search</mat-icon>
@@ -19,6 +19,10 @@
 			<mat-list-item routerLink="/reports" (click)="close()">
 				<mat-icon matListIcon>list_alt</mat-icon>
 				Expense Report
+			</mat-list-item>
+			<mat-list-item routerLink="/owing" (click)="close()">
+				<mat-icon matListIcon>people</mat-icon>
+				Calculate Owing
 			</mat-list-item>
 		</mat-nav-list>
 
