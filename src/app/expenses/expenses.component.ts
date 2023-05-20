@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { FormControl } from '@angular/forms';
 import { DeleteExpenseComponent } from '../deleteexpense/deleteexpense.component';
 import { ViewChild } from '@angular/core';
+import { ReportsComponent } from '../reports/reports.component';
 
 @Component({
   selector: 'app-expenses',
@@ -27,6 +28,23 @@ endDatePicker: any;
 // Creates instances of ExpensesService and MatDialog
   constructor(private bs: ExpensesService, public dialog: MatDialog) {
     
+  }
+  
+  calculateTotalExpenseByTenant(): { [key: string]: number } {
+    const totalExpenseByTenant: { [key: string]: number } = {};
+  console.log(this.expense)
+    this.expense.forEach((expense: any) => {
+      const tenant = expense.payer;
+      const amount = expense.amount;
+  
+      if (tenant in totalExpenseByTenant) {
+        totalExpenseByTenant[tenant] += amount;
+      } else {
+        totalExpenseByTenant[tenant] = amount;
+      }
+    });
+  
+    return totalExpenseByTenant;
   }
   
   expense: any;   // type of expense data

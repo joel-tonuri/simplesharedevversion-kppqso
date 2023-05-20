@@ -1,1 +1,11 @@
-REPORTS
+<h2>Total Expenses by Tenant</h2>
+<table>
+  <tr>
+    <th>Tenant</th>
+    <th>Total Amount</th>
+  </tr>
+  <tr *ngFor="let total of totalExpenseByTenant | keyvalue">
+    <td>{{ total.key }}</td>
+    <td>{{ total.value }}</td>
+  </tr>
+</table>
