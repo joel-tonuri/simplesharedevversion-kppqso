@@ -11,6 +11,8 @@
     left: 0;
     right: 0;
     text-align: center;
+    background: #FCCA46;
+    color: black;
 }
 
 
@@ -21,6 +23,7 @@
     left: 0;
     right: 0;
     height:40px;
+    background: #508AA8;
 }
 
 .footerMenu{
@@ -47,7 +50,7 @@ height:100vh;
     align-items: center;
     justify-content: center;
     width: 200px;
-    background: rgba(0, 4, 120, 0.5);
+    background: #03045E;
 }
 
 

@@ -23,6 +23,8 @@ button { /* specifies button position */
   width: 20%;
   margin-top: 10%;
   margin-left: 65%;
+  background-color: #EF767A;
+
 }
 h1,h5{
     display: block;
@@ -34,3 +36,4 @@ h1,h5{
   margin-right: -40px;
   margin-left: 20px;
 }
+

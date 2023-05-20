@@ -19,6 +19,9 @@ table { /* table sizing */
   width: 100%;
 }
 
+#delete {
+  color: #EF767A;
+}
 td, th {
   width: 25%;
 }

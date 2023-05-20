@@ -10,11 +10,15 @@ color:red;
 
 #one { /* left button positioning */
 position: fixed; bottom: 50px;
+
 }
 #two { /* right button positioning */
 bottom: 50px;
 right: 15px;
 position: fixed; 
+background-color: #EF767A;
+
+
 }
 h1 {
 margin-top: -25px;

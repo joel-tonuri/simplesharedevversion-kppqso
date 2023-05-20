@@ -35,10 +35,3 @@ a:visited {
 a:hover {
     color: hotpink;
 }
-
-/* Controls the size of the Google Maps embed */
-iframe {
-    height: 200px;
-    width: 100%;
-  }
-
