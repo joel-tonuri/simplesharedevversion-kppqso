@@ -31,7 +31,7 @@
 				<mat-form-field>
 				<mat-label>Who paid this expense?</mat-label>
 				<mat-select formControlName="payer" required>
-					<mat-option *ngFor="let payer of tenantList" [value]="payer">{{payer}} </mat-option>
+					<mat-option *ngFor="let payer of tenants" [value]="payer">{{payer}} </mat-option>
 				</mat-select>
 			</mat-form-field>
 		

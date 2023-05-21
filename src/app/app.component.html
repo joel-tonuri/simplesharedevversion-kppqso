@@ -16,14 +16,15 @@
 				<mat-icon matListIcon>search</mat-icon>
 				View Expenses
 			</mat-list-item>
+			<mat-list-item routerLink="/reconcileexpenses" (click)="close()">
+				<mat-icon matListIcon>people</mat-icon>
+				Reconcile Expenses
+			</mat-list-item>
 			<mat-list-item routerLink="/reports" (click)="close()">
 				<mat-icon matListIcon>list_alt</mat-icon>
 				Reports
 			</mat-list-item>
-			<mat-list-item routerLink="/owing" (click)="close()">
-				<mat-icon matListIcon>people</mat-icon>
-				Calculate Owing
-			</mat-list-item>
+
 		</mat-nav-list>
 
 	</mat-sidenav>

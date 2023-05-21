@@ -48,22 +48,24 @@ import {ExpensesService} from './services/expenses.service';
 
 // COMPONENTS
 import {AppComponent} from './app.component';
-import {HomeComponent} from './home/home.component'; // homepage
-import {AddExpenseComponent} from './addexpense/addexpense.component'; // add expense page
-import {ExpensesComponent} from './expenses/expenses.component'; // view expense page
-import {EditExpenseComponent} from './editexpense/editexpense.component'; // edit expense page
-import {DeleteExpenseComponent } from './deleteexpense/deleteexpense.component'; // delete expense confirmation popup
-import {ReportsComponent} from './reports/reports.component'; // reports
+import {HomeComponent} from './home/home.component';
+import {AddExpenseComponent} from './addexpense/addexpense.component';
+import {ExpensesComponent} from './expenses/expenses.component';
+import {EditExpenseComponent} from './editexpense/editexpense.component';
+import {DeleteExpenseComponent } from './deleteexpense/deleteexpense.component';
+import {ReconcileExpensesComponent} from './reconcileexpenses/reconcileexpenses.component';
+import {ReportsComponent} from './reports/reports.component';
 
 
 // ROUTING
 const appRoutes: Routes = [
-    {path: 'home', component: HomeComponent}, // homepage
-    {path: 'addexpense', component: AddExpenseComponent}, // add expense page
-    {path: 'editexpense/:id', component: EditExpenseComponent}, // edit expense page, grabs the id of specific expense to edit
-    {path: 'expenses', component: ExpensesComponent}, // view expense page
-    {path: 'reports', component: ReportsComponent}, // edit expense page, grabs the id of specific expense to edit
-    {path: '**', component: HomeComponent} // wildcard to homepage
+    {path: 'home', component: HomeComponent},
+    {path: 'addexpense', component: AddExpenseComponent},
+    {path: 'editexpense/:id', component: EditExpenseComponent},
+    {path: 'expenses', component: ExpensesComponent},
+    {path: 'reconcileexpenses', component: ReconcileExpensesComponent},
+    {path: 'reports', component: ReportsComponent},
+    {path: '**', component: HomeComponent} 
 
 ];
 
@@ -115,7 +117,7 @@ const appRoutes: Routes = [
             appRoutes,
         )
     ],  // end imports
-    declarations: [AppComponent, HomeComponent, AddExpenseComponent, ExpensesComponent, EditExpenseComponent, DeleteExpenseComponent, ReportsComponent],
+    declarations: [AppComponent, HomeComponent, AddExpenseComponent, ExpensesComponent, EditExpenseComponent, DeleteExpenseComponent, ReconcileExpensesComponent, ReportsComponent],
     bootstrap: [AppComponent],
     providers: [EditExpenseComponent, ExpensesService, [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }]], // changes datepicker locale to en_GB
     entryComponents: [DeleteExpenseComponent]

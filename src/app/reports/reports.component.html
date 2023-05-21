@@ -35,7 +35,7 @@
         <th>Merchant</th>
         <th>Amount</th>
         <th>Date</th>
-        <th>Reconciled?</th>
+        <th>Repaid?</th>
       </tr>
     </thead>
     <tbody>
@@ -43,7 +43,7 @@
         <td>{{ expense.merchant }}</td>
         <td>${{ expense.amount }}</td>
         <td>{{ expense.dop | date: 'dd/MM/yyyy'}}</td>
-        <td>False</td>
+        <td>{{ expense. repaid }}</td>
       </tr>
     </tbody>
   </table>

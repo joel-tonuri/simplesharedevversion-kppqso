@@ -86,7 +86,14 @@ editExpense(expense, id): void {
     }
   }
   
-  
+  markExpenseAsPaid(expenseId: string): void {
+    const expenses = this.getExpense();
+    const expense = expenses.find((expense: any) => expense.id === expenseId);
+    if (expense) {
+      expense.repaid = true;
+      this.updateExpense(expense);
+    }
+  }
 
   
   checkAdd(addValues): void {

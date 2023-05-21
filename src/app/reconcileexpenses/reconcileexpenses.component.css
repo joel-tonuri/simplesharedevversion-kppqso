@@ -1,0 +1,23 @@
+.expense-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.expense-table th,
+.expense-table td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+.reconciliation-table {
+  border-collapse: collapse;
+  margin: 0;
+}
+
+.reconciliation-table td {
+  border: 1px solid black;
+  padding: 4px 8px;
+  text-align: left;
+}

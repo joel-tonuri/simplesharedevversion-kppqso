@@ -1,0 +1,27 @@
+<h1>Reconcile Expenses</h1>
+
+<table class="expense-table">
+  <thead>
+    <tr>
+      <th>Paid to</th>
+      <th>Amount Paid</th>
+      <th>Incurred By</th>
+      <th>Reconciliation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let expense of expenses">
+      <td><a href="#" (click)="markAsPaid(expense)" *ngIf="!expense.repaid">{{ expense.merchant }}</a></td>
+      <td>${{ expense.amount }}</td>
+      <td>{{ expense.payer }}</td>
+      <td>
+<table class="reconciliation-table">
+  <ng-container *ngFor="let tenant of tenants">
+    <ng-container *ngIf="tenant !== expense.payer">
+      <tr>
+        <td>{{ tenant }}</td>
+        <td>${{ calculateAmountOwed(expense, tenant) | number: '1.2-2' }}</td>
+      </tr>
+    </ng-container>
+  </ng-container>
+</table>
