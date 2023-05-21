@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ExpensesService } from '../services/expenses.service'; // imports ExpensesService
 
@@ -15,6 +15,7 @@ export class EditExpenseComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
+    private router: Router,
     private bs: ExpensesService) { }
 
   // Makes my 'expenseForm' a FormGroup
@@ -25,6 +26,8 @@ export class EditExpenseComponent implements OnInit, OnDestroy {
   private sub: any;
   // expenses array
   expenses: any
+  expense: any = {};
+  showPaid: boolean = false;
 
   ngOnInit() {
     // call the ExpensesServices Method 'getExpenseArray'
@@ -56,6 +59,12 @@ export class EditExpenseComponent implements OnInit, OnDestroy {
     this.bntStyle = 'mat-fab';
   }
 
+  markAsPaid(): void {
+    this.expense.repaid = true;
+    this.bs.editExpense(this.expense, this.id);
+    this.router.navigate(['/expenses']);
+  }
+  
   ngOnDestroy() {
     this.sub.unsubscribe();
   }

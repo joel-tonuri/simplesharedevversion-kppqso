@@ -12,10 +12,11 @@
   <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
   <mat-datepicker #endDatePicker></mat-datepicker>
 </mat-form-field>
+<mat-checkbox [(ngModel)]="showPaid" (change)="updateFilteredExpenses()">Show Paid</mat-checkbox>
 
 <br>
 <br>
-<table  mat-table [dataSource]="dataSource" matSort>
+<table  mat-table [dataSource]="filteredExpenses" matSort>
 
 <!-- Columns -->
 <ng-container matColumnDef="Merchant">

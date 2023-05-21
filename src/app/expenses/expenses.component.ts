@@ -24,7 +24,8 @@ endDate: string|number|Date;
 dop: string|number|Date;
 startDatePicker: any;
 endDatePicker: any;
-
+showPaid: boolean = false;
+filteredExpenses: any[] = [];
 // Creates instances of ExpensesService and MatDialog
   constructor(private bs: ExpensesService, public dialog: MatDialog) {
     
@@ -55,18 +56,27 @@ endDatePicker: any;
   ngOnInit() {    
     this.expense = this.bs.getExpense(); // calls the ExpensesService Method 'getExpense' and relays all the data to 'expense'
     this.dataSource = new MatTableDataSource<ExpensesComponent>(this.expense);
-    
-  }
+    this.filteredExpenses = this.expense;
+    this.updateFilteredExpenses();
 
+  }
   applyFilter() {
     this.dataSource.filter = this.searchKey.trim().toLowerCase();
   }
+  
   
   clearFilter() {
     this.searchKey = '';
     this.applyFilter();
   }
-
+  updateFilteredExpenses(): void {
+    this.filteredExpenses = this.bs.getFilteredExpenses(this.showPaid);
+    this.dataSource.data = this.filteredExpenses.length > 0 ? this.filteredExpenses : [];
+  }
+  
+  
+  
+  
   search() {
     console.log('Search function called');
     const startDate = this.startDate;
@@ -87,7 +97,6 @@ endDatePicker: any;
     this.dataSource.filter = this.searchKey.trim().toLowerCase();
 
   }
-  
   openDialog(id: number): void {
     const dialogConfig: MatDialogConfig = {
       width: '500px', // specifies pop up width

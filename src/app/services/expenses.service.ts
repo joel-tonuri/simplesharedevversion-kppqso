@@ -42,16 +42,22 @@ export class ExpensesService   {
   // and pushes this parameter into the expenses array
   addExpense(expense): void {
     let expenses = JSON.parse(localStorage.getItem('expensesDB'));
+    expense.repaid = false;
     expenses.push(expense);  // add the object to the end of the array
     localStorage.setItem('expensesDB', JSON.stringify(expenses));
+  
+    // Update the expenses array in the service
+    this.expenses = expenses;
   }
+  
 
 // this function edits the data already stored in expensesDB
-  editExpense(expense, id): void {
-    let expenses = JSON.parse(localStorage.getItem('expensesDB'));
-    expenses[id] = expense; // changes the objects at array position id
-    localStorage.setItem('expensesDB', JSON.stringify(expenses));
-  }
+editExpense(expense, id): void {
+  let expenses = this.getExpense();
+  expenses[id].repaid = expense.repaid; // Update the 'repaid' property of the expense
+  localStorage.setItem('expensesDB', JSON.stringify(expenses));
+}
+
 
   deleteExpense(id): void {
     let expenses = this.getExpense()
@@ -59,6 +65,30 @@ export class ExpensesService   {
     localStorage.setItem('expensesDB', JSON.stringify(expenses));
   }
 
+  getExpenseById(id: string): any {
+    const expenses = JSON.parse(localStorage.getItem('expensesDB')) || [];
+    return expenses.find((expense: any) => expense.id === id);
+  }
+  updateExpense(updatedExpense: any): void {
+    const expenses = JSON.parse(localStorage.getItem('expensesDB')) || [];
+    const expenseIndex = expenses.findIndex((expense: any) => expense.id === updatedExpense.id);
+    if (expenseIndex !== -1) {
+      expenses[expenseIndex] = updatedExpense;
+      localStorage.setItem('expensesDB', JSON.stringify(expenses));
+    }
+  }
+  getFilteredExpenses(showPaid: boolean): any[] {
+    const expenses = this.getExpense();
+    if (showPaid) {
+      return expenses;
+    } else {
+      return expenses.filter((expense: any) => !expense.repaid);
+    }
+  }
+  
+  
+
+  
   checkAdd(addValues): void {
     // checks if inputs in the expenseForm are valid
     this.valid = "pass";

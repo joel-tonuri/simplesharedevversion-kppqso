@@ -117,7 +117,7 @@ const appRoutes: Routes = [
     ],  // end imports
     declarations: [AppComponent, HomeComponent, AddExpenseComponent, ExpensesComponent, EditExpenseComponent, DeleteExpenseComponent, ReportsComponent],
     bootstrap: [AppComponent],
-    providers: [ExpensesService, [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }]], // changes datepicker locale to en_GB
+    providers: [EditExpenseComponent, ExpensesService, [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }]], // changes datepicker locale to en_GB
     entryComponents: [DeleteExpenseComponent]
 })
 export class AppModule {
